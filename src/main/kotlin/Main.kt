@@ -38,7 +38,7 @@
    Using the safe call operator (?.), the following line will
    only be executed if the variable is not null.
    Otherwise, it will do nothing:
-   val a = b?.getValue()
+   val myString = a?.toString()
 
    We can even provide an alternative for the null case using
    the Elvis operator (?:):
@@ -73,7 +73,7 @@ data class User(val name: String, val age: Int)
 class Animal(type: String, var breed: String) {
 
     // getter and setter for field in primary constructor
-    public var type: String = type
+    var type: String = type  // type is public by default
     get() = field
     set(value) {
         field = value
@@ -97,24 +97,39 @@ class Animal(type: String, var breed: String) {
 fun main(args: Array<String>) {
     println("Hello World!")
 
+    // Variable declaration examples:
     var msg: String = "Hello, World!" // defining a variable
     var msgAlt = "CheSuperSbomballo!"  // type inference
     var bool: Boolean = true  // a Boolean
     var boolNull: Boolean? = null  // a Boolean that can have null value
+
+    // Printing output examples:
     println("$msg")  // print variable with $ sign
     println("message: "+msg)  // print variable in Java-like style
 
-    val x: Int = 10000    // Integer (const)
+    // Null Safety example:
+    var myString: String? = "Pippo" // declare a string that can be null
+    myString = boolNull?.toString() // assign a value only if it's not null
+    println("myString is: "+myString)
+
+    // Elvis operator example:
+    myString = boolNull?.toString() ?: "Boolean was null"  // assign the boolean value if it's non null, otherwise assign the other string
+    println("myString is: "+myString)
+
+
+    // Data types:
+    val x: Int = 10000    // Integer (val = const)
     println("Int value is: "+x)
 
     val y: Long = x.toLong()   // Casting
 
-    val numbers: IntArray = intArrayOf(1, 2, 3, 4, 5)   // Array (const)
+    val numbers: IntArray = intArrayOf(1, 2, 3, 4, 5)   // Array (val = const)
     println("Value at 3rd position : " + numbers[2])
     numbers.set(2, 15)  // set a value
     // numbers.set(5, 25)  // Error! Out of bounds
     println("Value at 3rd position : " + numbers[2])
 
+    // Classes:
     val p = Person("Joe", "Doe", LocalDate.now())
 
     println(p.dateOfBirth.toString()+" "+p.givenName+" "+p.familyName)
@@ -122,6 +137,7 @@ fun main(args: Array<String>) {
     val animal = Animal("dog", "yorkshire")
 
     animal.type = "monkey";  // setter
+    // animal.age = 5;  // Error! age attribute is private
 
     // Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
