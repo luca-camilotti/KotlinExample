@@ -18,13 +18,32 @@
  */
 
 /*
-   Functions (methods in Java)
+   Semicolon: optional
+   ___________________
+
+   new keyword: not used
+   _____________________
+
+
+   Functions (= Java methods)
    ___________________________
+
+   Defined with fun keyword:
 
    fun foo(pamam1: Int, param2: String): Unit {
       // Unit as the return type means "void"
    }
    Entry point for a kotlin application: main function
+
+   Overriding
+   __________
+   Use override keyword in front of the function:
+   override fun pippo(): Int { ... }
+
+   Exceptions
+   __________
+   Like Java (throw, try, catch..).
+   Exception subclasses are the same as in Java.
 
    Null Safety
    ___________
@@ -44,6 +63,11 @@
    the Elvis operator (?:):
    val myString = a?.toString() ?: ""
 
+   Non-null safety (!!)
+   ____________________
+   Throws NullPointerException if object a is null:
+   val myString = a!!.toString()
+
    Variables
    _________
    var is a variable (mutable)
@@ -54,8 +78,7 @@
 
    Note that everything is an object in Kotlin (even Java primitive types)!
 
-   Semicolon: optional
-   ___________________
+
  */
 import java.time.LocalDate
 // Simple empty class
@@ -72,6 +95,10 @@ data class User(val name: String, val age: Int)
 // var attribute: generate getter and setter
 class Animal(type: String, var breed: String) {
 
+    init {  // init (optional) performs additional instructions when primary constructor in called
+        if(breed.equals(""))
+            breed = "unknown"
+    }
     // getter and setter for field in primary constructor
     var type: String = type  // type is public by default
     get() = field
@@ -79,7 +106,8 @@ class Animal(type: String, var breed: String) {
         field = value
     }
 
-    private var age: Int = 0
+    // Define additional attribute with getter and setter:
+    private var age: Int = 0  // if private, you can't use getter and setter..
     set(value) {  // setter for age
         if(value > 0)
             field = value
@@ -134,12 +162,19 @@ fun main(args: Array<String>) {
 
     println(p.dateOfBirth.toString()+" "+p.givenName+" "+p.familyName)
 
-    val animal = Animal("dog", "yorkshire")
+    val animal = Animal("dog", "")
 
+    println("Breed: "+animal.breed)
     animal.type = "monkey";  // setter
     // animal.age = 5;  // Error! age attribute is private
 
     // Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     println("Program arguments: ${args.joinToString()}")
+
+    // Input
+    println("write something: ")
+    var input = readLine()
+    println("input: "+input)
+    println("input to Int: "+input?.toInt())  // possibly throws NumberFormatException
 }
