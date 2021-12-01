@@ -35,6 +35,18 @@
    }
    Entry point for a kotlin application: main function
 
+   Example:
+
+   fun distance(point: Punto2D) = sqrt((point.x - this.x).pow(2) + (point.y - this.y).pow(2))
+
+   Lambda Functions
+   ________________
+
+   Example:
+   val sum = { x: Int, y: Int -> x + y }
+
+   The last expression inside the body is considered as the return statement.
+
    Overriding
    __________
    Use override keyword in front of the function:
@@ -65,6 +77,10 @@
 
    Non-null safety (!!)
    ____________________
+   The !! operator converts a nullable type to a non-null type.
+   val nullableName: String? = null
+   nullableName!!.toUpperCase() // Results in NullPointerException
+
    Throws NullPointerException if object a is null:
    val myString = a!!.toString()
 
@@ -158,6 +174,12 @@ fun main(args: Array<String>) {
     println("Value at 3rd position : " + numbers[2])
 
     // Classes:
+
+    val u = User("Pippo", 18)
+    println("User Class Example: "+u.name+" "+u.age);
+    // u.name = "Pluto";  // Error: val cannot be reassigned
+
+
     val p = Person("Joe", "Doe", LocalDate.now())
 
     println(p.dateOfBirth.toString()+" "+p.givenName+" "+p.familyName)
