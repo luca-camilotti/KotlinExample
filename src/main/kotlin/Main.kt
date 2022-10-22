@@ -99,7 +99,7 @@
 import java.time.LocalDate
 // Simple empty class
 class Pippo
-// Class with primary constructor (generate automaticalli attributes and getters)
+// Class with primary constructor (generate automatically attributes and getters)
 // var attribute: cannot be modified (no setter)
 class Person(val givenName: String, val familyName: String, val dateOfBirth: LocalDate)
 // you can put extra code for constructor inside init{} block
