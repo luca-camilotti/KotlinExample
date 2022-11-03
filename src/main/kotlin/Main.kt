@@ -126,13 +126,13 @@
       field = value
    }
 
-   With getter and setter you will be able to read and assign the attribute
-   "name" outside the class:
+   With getter and setter you will be able to read and assign a value to the attribute
+   outside the class:
 
-   myobj.name="Pluto"
-   println(myobj.name)
+   myobj.name="Pluto"  // using setter
+   println(myobj.name) // using getter
 
-   Of course you can modify the default getter and setter behaviour:
+   Of course, you can modify the default getter and setter behaviour:
 
    var name: String = "Pippo"
    get() {
