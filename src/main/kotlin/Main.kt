@@ -174,6 +174,18 @@
    To make a class a base class, mark it with "open" keyword.
    To make a method overridable, mark it with "open" keyword.
 
+   Inheritance and override example:
+
+   open class Button {
+        open fun click() = print("Click")
+        fun doubleClick() = print("Double Click")
+    }
+
+    class SpecificButton() : Button { // Inheritance is now possible
+        override fun click() = print("Specific Click") // Now it works
+        override fun doubleClick() = print("Specific Double Click") // Error, the original doubleClick() method is not declared with the "open" keyword: you can't override it
+    }
+
 
  */
 import java.time.LocalDate
