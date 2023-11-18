@@ -64,6 +64,37 @@
    Like Java (throw, try, catch..).
    Exception subclasses are the same as in Java.
 
+   Switch-case
+   ___________
+   The switch-case statement is replaced with when statement:
+   when (x) {
+    1 -> print("x == 1")
+    2 -> print("x == 2")
+    else -> {
+        print("x is neither 1 nor 2")
+    }
+   }
+   The else corresponds to the default
+   option.
+   It also works with strings:
+
+   val result = when (operator) {
+        "+" -> a + b
+        "-" -> a - b
+        "*" -> a * b
+        "/" -> a / b
+        else -> "$operator operator is invalid!"
+    }
+
+    You can write also something like this:
+
+    when(x){
+      1 -> println("x is 1")
+      3,4,5,6,7 -> println("x can be any number from 3 to 7")
+      in 8..15 -> println("x is something from 8 to 15")
+      else -> println("When x does not belong to any of the above case")
+    }
+
    Null Safety
    ___________
 
@@ -234,7 +265,7 @@ class Animal(type: String, var breed: String) {
     // one is generated).
     private var age: Int = 0  // if private, you can't use getter and setter outside the class..
     set(value) {  // setter for age
-        if(value > 0)
+        if(value >= 0)
             field = value
         else
             field = 0
@@ -243,6 +274,9 @@ class Animal(type: String, var breed: String) {
     // Define a method:
     fun getAge(): Int {
         return this.age; // return the value of the private attribute
+    }
+    fun set_Age(value: Int): Unit {
+        this.age = value; // return the value of the private attribute
     }
 
     // Define a secondary constructor:
@@ -267,10 +301,15 @@ fun main(args: Array<String>) {
 
     // Variable declaration examples:
     var msg: String = "Hello, World!" // defining a variable
+    var str = "Hi!"
+    var foo: Int
+
     var msgAlt = "CheSuperSbomballo!"  // type inference
     var bool: Boolean = true  // a Boolean
     var boolNull: Boolean? = null  // a Boolean that can have null value
 
+    var pluto : Boolean; // = "Hello";
+    //pluto = false;
     // Printing output examples:
     println("$msg")  // print variable with $ sign
     println("message: "+msg)  // print variable in Java-like style
@@ -283,6 +322,11 @@ fun main(args: Array<String>) {
     // Elvis operator example:
     myString = boolNull?.toString() ?: "Boolean was null"  // assign the boolean value if it's non null, otherwise assign the other string
     println("myString is: "+myString)
+    // equivale a:
+    if(boolNull!=null)
+        myString = boolNull.toString()
+    else
+        myString = "Boolean was null"
 
 
     // Data types:
@@ -306,6 +350,7 @@ fun main(args: Array<String>) {
 
     val p = Person("Joe", "Doe", LocalDate.now())
 
+    //p.givenName ="Boohhh";  // error: givenName is constant
     println(p.dateOfBirth.toString()+" "+p.givenName+" "+p.familyName)
 
     val animal = Animal("dog", "")
@@ -314,6 +359,7 @@ fun main(args: Array<String>) {
     animal.type = "monkey";  // setter
     animal.breed = "macaco";
     // animal.age = 5;  // Error! age attribute is private
+    animal.set_Age(5);
     println("This "+animal.type+" is "+animal.getAge()+" years old.")
 
     // Try adding program arguments via Run/Debug configuration.
