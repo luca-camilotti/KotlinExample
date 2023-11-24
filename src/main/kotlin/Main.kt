@@ -405,6 +405,9 @@ fun main(args: Array<String>) {
         println(input+" cannot be converted to a number!")
     }
     // Arrays
+    /* Like in Java, C, C++, arrays in Kotlin are data structures
+       that holds a fixed number of values of the same type.
+    */
     var users = Array<User>(10) {User("--", 0)} // initialize an array with users name="--" and age=0
     var otherUsers = Array<User>(10) { User("user"+it, it*5) } // use iterator it to initialize the array of objects with different values
     var array = emptyArray<User>() // an empty array (0 elements)
