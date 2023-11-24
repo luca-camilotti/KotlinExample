@@ -105,6 +105,23 @@
       else -> println("When x does not belong to any of the above case")
     }
 
+   For loop
+   ________
+   The bounds are included:
+
+   for (i in 1..3) {
+    println(i)  // prints numbers from 1 to 3
+   }
+   for (i in 6 downTo 0 step 2) {
+    println(i)  // prints 6, 4, 2, 0
+   }
+
+   Here is the for with iterator (like Java enhanced for)
+   that can loop through every collection:
+
+   for (item in collection)
+     print(item)
+
    Null Safety
    ___________
 
@@ -380,5 +397,31 @@ fun main(args: Array<String>) {
     println("write something: ")
     var input = readLine()
     println("input: "+input)
-    println("input to Int: "+input?.toInt())  // possibly throws NumberFormatException
+    try {
+        println("input to Int: " + input?.toInt())  // possibly throws NumberFormatException
+
+    } catch(e: NumberFormatException) {
+        println(e.message)
+        println(input+" cannot be converted to a number!")
+    }
+    // Arrays
+    var users = Array<User>(10) {User("--", 0)} // initialize an array with users name="--" and age=0
+    var otherUsers = Array<User>(10) { User("user"+it, it*5) } // use iterator it to initialize the array of objects with different values
+    var array = emptyArray<User>() // an empty array (0 elements)
+    array+= User("Pluto", 25)  // add an element to the array (the old array is replaced with the new one)
+    array+= User("Paperino", 32)
+    array+= User("Johnny", 19)
+    // Loop through an array
+    // For Each:
+    array.forEach { println(it) } // print elements; it is the iterator that allows to access every single element
+    // Enhanced For:
+    for(p in array)
+        println(p)
+    // Enhanced For with index:
+    for(i in array.indices) {
+        println(array[i])
+    }
+    // Classic For:
+    for(i in 0 .. array.size-1)
+        println(array[i])
 }
